@@ -296,7 +296,7 @@ model = tf.keras.models.load_model("model.keras")  # Sesuaikan dengan lokasi fil
 
 class_labels = ["Kucing", "Anjing", "Ular"]
 
-"""Bentuk Folder (Animals Classification/test/)"""
+"""### **Bentuk Folder (Animals Classification/test)**"""
 
 test_datagen = ImageDataGenerator(rescale=1./255)
 
@@ -310,7 +310,23 @@ test_generator = test_datagen.flow_from_directory(
 test_loss, test_acc = model.evaluate(test_generator)
 print(f"Akurasi model pada dataset uji: {test_acc * 100:.2f}%")
 
-"""Bentuk Upload Gambar"""
+"""### **Bentuk Upload Gambar**"""
+
+# Fungsi prediksi gambar
+def predict_uploaded_image(image_path, model, target_size=(150, 150)):
+    img = image.load_img(image_path, target_size=target_size)  # Load gambar
+    img_array = image.img_to_array(img)  # Ubah ke array
+    img_array = np.expand_dims(img_array, axis=0)  # Tambahkan dimensi batch
+    img_array /= 255.0  # Normalisasi
+
+    # Prediksi
+    prediction = model.predict(img_array)
+    predicted_class = np.argmax(prediction, axis=1)[0]  # Ambil indeks kelas tertinggi
+    predicted_label = class_labels[predicted_class]  # Ambil label kelas
+
+    return img, predicted_label, prediction
+
+class_labels = ["Kucing", "Anjing", "Ular"]  # Pastikan urutan sesuai output model
 
 # Unggah file gambar dari komputer
 uploaded = files.upload()
@@ -319,22 +335,16 @@ uploaded = files.upload()
 image_path = list(uploaded.keys())[0]
 print(f"Gambar yang diunggah: {image_path}")
 
-# Fungsi prediksi gambar
-def predict_uploaded_image(image_path, model, target_size=(150, 150)):
-    img = image.load_img(image_path, target_size=target_size)
-    img_array = image.img_to_array(img)
-    img_array = np.expand_dims(img_array, axis=0)
-    img_array /= 255.0  # Normalisasi
-
-    # Prediksi
-    prediction = model.predict(img_array)
-    predicted_class = np.argmax(prediction, axis=1)[0]
-    predicted_label = class_labels[predicted_class]
-
-    return predicted_label, prediction
-
 # Lakukan prediksi
-predicted_label, prediction = predict_uploaded_image(image_path, model)
+img, predicted_label, prediction = predict_uploaded_image(image_path, model)
+
+# Tampilkan gambar dengan hasil prediksi
+plt.imshow(img)  # Tampilkan gambar
+plt.axis("off")  # Hilangkan axis
+plt.title(f"Prediksi: {predicted_label}")  # Tambahkan hasil prediksi sebagai judul
+plt.show()
+
+# Tampilkan detail probabilitas
 print(f"Prediksi kelas: {predicted_label}, Probabilitas: {prediction}")
 
 # Unggah file gambar dari komputer
@@ -344,22 +354,16 @@ uploaded = files.upload()
 image_path = list(uploaded.keys())[0]
 print(f"Gambar yang diunggah: {image_path}")
 
-# Fungsi prediksi gambar
-def predict_uploaded_image(image_path, model, target_size=(150, 150)):
-    img = image.load_img(image_path, target_size=target_size)
-    img_array = image.img_to_array(img)
-    img_array = np.expand_dims(img_array, axis=0)
-    img_array /= 255.0  # Normalisasi
-
-    # Prediksi
-    prediction = model.predict(img_array)
-    predicted_class = np.argmax(prediction, axis=1)[0]
-    predicted_label = class_labels[predicted_class]
-
-    return predicted_label, prediction
-
 # Lakukan prediksi
-predicted_label, prediction = predict_uploaded_image(image_path, model)
+img, predicted_label, prediction = predict_uploaded_image(image_path, model)
+
+# Tampilkan gambar dengan hasil prediksi
+plt.imshow(img)  # Tampilkan gambar
+plt.axis("off")  # Hilangkan axis
+plt.title(f"Prediksi: {predicted_label}")  # Tambahkan hasil prediksi sebagai judul
+plt.show()
+
+# Tampilkan detail probabilitas
 print(f"Prediksi kelas: {predicted_label}, Probabilitas: {prediction}")
 
 # Unggah file gambar dari komputer
@@ -369,20 +373,14 @@ uploaded = files.upload()
 image_path = list(uploaded.keys())[0]
 print(f"Gambar yang diunggah: {image_path}")
 
-# Fungsi prediksi gambar
-def predict_uploaded_image(image_path, model, target_size=(150, 150)):
-    img = image.load_img(image_path, target_size=target_size)
-    img_array = image.img_to_array(img)
-    img_array = np.expand_dims(img_array, axis=0)
-    img_array /= 255.0  # Normalisasi
-
-    # Prediksi
-    prediction = model.predict(img_array)
-    predicted_class = np.argmax(prediction, axis=1)[0]
-    predicted_label = class_labels[predicted_class]
-
-    return predicted_label, prediction
-
 # Lakukan prediksi
-predicted_label, prediction = predict_uploaded_image(image_path, model)
+img, predicted_label, prediction = predict_uploaded_image(image_path, model)
+
+# Tampilkan gambar dengan hasil prediksi
+plt.imshow(img)  # Tampilkan gambar
+plt.axis("off")  # Hilangkan axis
+plt.title(f"Prediksi: {predicted_label}")  # Tambahkan hasil prediksi sebagai judul
+plt.show()
+
+# Tampilkan detail probabilitas
 print(f"Prediksi kelas: {predicted_label}, Probabilitas: {prediction}")
