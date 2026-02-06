@@ -7,9 +7,9 @@ Submission proyek klasifikasi gambar ini adalah sebuah proyek akhir untuk penila
 - `notebook.ipynb`: File yang digunakan untuk melakukan keseluruhan kegiatan dari mengunduh dataset hingga inference atau testing model.
 - `notebook.py`: File yang sama seperti `notebook.ipynb`, hanya saja versi .py.
 - `requirements.txt.`: File persyaratan module dan library.
-- `model_saved`: Folder yang berisi model dengan format standar TensorFlow yang bisa digunakan untuk deployment di server atau cloud, di buat dari model.keras.
-- `model.tflite`: File yang berisi model dengan format yang dioptimalkan untuk perangkat mobile dan embedded. 
-- `model_tfjs`: Folder yang berisi model dengan format untuk TensorFlow.js yang memungkinkan model dijalankan di browser dan aplikasi berbasis JavaScript.
+- `saved_model/`: Folder yang berisi model dengan format standar TensorFlow yang bisa digunakan untuk deployment di server atau cloud, di buat dari model.keras.
+- `model_optimized.tflite`: File yang berisi model dengan format yang dioptimalkan untuk perangkat mobile dan embedded. 
+- `tfjs_model/`: Folder yang berisi model dengan format untuk TensorFlow.js yang memungkinkan model dijalankan di browser dan aplikasi berbasis JavaScript.
 - `README.md`: File dokumentasi.
 
 ## Instalasi
